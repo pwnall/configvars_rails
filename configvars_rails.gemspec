@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configvars_rails}
-  s.version = "0.4.4"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
@@ -26,10 +26,11 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "app/helpers/config_vars_helper.rb",
+     "configvars_rails.gemspec",
      "lib/configvars_rails.rb",
      "lib/configvars_rails/controller.rb",
      "lib/configvars_rails/engine.rb",
-     "lib/configvars_rails/generators/config_vars_generator.rb",
+     "lib/configvars_rails/generators/all_generator.rb",
      "lib/configvars_rails/generators/templates/001_create_config_vars.rb",
      "lib/configvars_rails/generators/templates/config_var.rb",
      "lib/configvars_rails/generators/templates/config_vars.yml",
