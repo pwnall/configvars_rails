@@ -1,0 +1,25 @@
+<h1>Listing Configuration Variables</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @config_vars.each do |config_var| %>
+  <tr>
+    <td><%= config_var.name %></td>
+    <td><%= config_var.value %></td>
+    <td><%= link_to 'Show', config_var %></td>
+    <td><%= link_to 'Edit', edit_config_var_path(config_var) %></td>
+    <td><%= link_to 'Destroy', config_var, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Configuration Variable', new_config_var_path %>

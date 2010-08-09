@@ -1,0 +1,33 @@
+= configvars_rails
+
+Global configuration variables for a Ruby on Rails 3 application.
+
+Configuration for Rails application is idiomatically stored in the source code,
+under the config/ directory. This approach has many upsides, such as having the
+configuration go under version control together with the rest of the code.
+However, it also means that the source code has to be modified to make any
+configuration change. This makes it unlikely that the same code can be used in
+different deployments.
+
+== Integration
+
+Scaffold the model, controller, and views.
+    rails g config_vars    
+
+Note: the code inside the models and controllers is tucked away in the plug-in.
+The scaffold model and controller is there as an point. You will be
+able to update the plug-in without regenerating the scaffolds.
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 Victor Costan, released under the MIT license
