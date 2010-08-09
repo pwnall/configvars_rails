@@ -35,10 +35,13 @@ end  # module ConfigvarsRails::Model::ModelClassMethods
 module ModelMetaclassMethods
   # Access configuration flags by ConfigVar['flag_name'].
   def [](name)
-    unless flag = where(:name => name).first
-      raise IndexError, "Configuration variable #{name} not found"
-    end
-    flag.value
+    var = where(:name => name).first
+    return var.value if var
+    
+    descriptor = ConfigvarsRails.variable_descriptor name
+    return descriptor.default_value if descriptor
+    
+    raise IndexError, "Configuration variable #{name} not found"
   end
   
   # Set configuration flags by ConfigVar['flag_name'] = 'flag_value'.
@@ -54,6 +57,10 @@ end  # module ConfigvarsRails::Model::ModelMetaclassMethods
 
 # Included in models that call config_vars_model.
 module ModelInstanceMethods
+  # The descriptor for this variable, or nil if no descriptor was defined.
+  def descriptor
+    ConfigvarsRails.variable_descriptor name
+  end
 end  # module ConfigvarsRails::Model::ModelInstanceMethods
 
 ActiveRecord::Base.send :include, ModelMixin

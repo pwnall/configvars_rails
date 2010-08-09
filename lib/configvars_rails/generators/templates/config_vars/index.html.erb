@@ -1,9 +1,11 @@
-<h1>Listing Configuration Variables</h1>
+<h1>Set Configuration Variables</h1>
 
-<table>
+<table class="configuration_variables">
   <tr>
     <th>Name</th>
+    <th>Type</th>
     <th>Value</th>
+    <th>Default Value</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,14 +14,39 @@
 <% @config_vars.each do |config_var| %>
   <tr>
     <td><%= config_var.name %></td>
+    <td>
+      <%= config_var.descriptor ? config_var.descriptor.value_type :
+              'undefined' %>
+    </td>
     <td><%= config_var.value %></td>
-    <td><%= link_to 'Show', config_var %></td>
+    <td>
+      <%= config_var.descriptor ? config_var.descriptor.default_value :
+              'undefined' %>
+    </td>
     <td><%= link_to 'Edit', edit_config_var_path(config_var) %></td>
-    <td><%= link_to 'Destroy', config_var, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Reset to default', config_var, :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<h1>Available Configuration Variables</h1>
 
-<%= link_to 'New Configuration Variable', new_config_var_path %>
+<table class="configuration_variables">
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Default Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @default_vars.each do |name, descriptor| %>
+  <tr>
+    <td><%= name %></td>
+    <td><%= descriptor.value_type %></td>
+    <td><%= descriptor.default_value %></td>
+    <td><%= link_to 'Edit', new_config_var_path(:name => name) %></td>
+  </tr>
+<% end %>
+</table>

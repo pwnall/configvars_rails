@@ -5,9 +5,8 @@ class ConfigVarsControllerTest < ActionController::TestCase
     @config_var = config_vars(:app_uri)
   end
   
-  test "cannot access config var without authentication" do
-    get :show, :id => @config_var.to_param
-
+  test "cannot access config vars without authentication" do
+    get :index
     assert_response :unauthorized    
   end
 end

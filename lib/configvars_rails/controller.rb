@@ -30,27 +30,27 @@ module ControllerInstanceMethods
   # GET /config_vars
   # GET /config_vars.xml
   def index
-    @config_vars = ConfigVar.all
+    @config_vars = ConfigVar.order(:name).all
+    
+    defined_names = ConfigvarsRails.variable_names
+    default_names = defined_names - @config_vars.map { |var| var.name.to_sym }
+    @default_vars = {}
+    default_names.map(&:to_s).sort.each do |name|
+      @default_vars[name] = ConfigvarsRails.variable_descriptor(name)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
-  # GET /config_vars/1
-  # GET /config_vars/1.xml
-  def show
-    @config_var = ConfigVar.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
   # GET /config_vars/new
   # GET /config_vars/new.xml
   def new
-    @config_var = ConfigVar.new
+    @config_var = ConfigVar.new :name => params[:name]
+    if params[:name] and descriptor = ConfigvarsRails.variable_descriptor(params[:name])
+      @config_var.value = descriptor.default_value
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -69,7 +69,7 @@ module ControllerInstanceMethods
 
     respond_to do |format|
       if @config_var.save!
-        format.html { redirect_to(@config_var, :notice => 'Configuration variable was successfully created.') }
+        format.html { redirect_to(config_vars_url, :notice => 'Configuration variable was successfully created.') }
       else
         format.html { render :action => :new }
       end
@@ -83,7 +83,7 @@ module ControllerInstanceMethods
 
     respond_to do |format|
       if @config_var.update_attributes(params[:config_var])
-        format.html { redirect_to(@config_var, :notice => 'Config flag was successfully updated.') }
+        format.html { redirect_to(config_vars_url, :notice => 'Configuration variable was successfully updated.') }
       else
         format.html { render :action => :edit }
       end

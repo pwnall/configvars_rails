@@ -21,13 +21,16 @@ class AllGenerator < Rails::Generators::Base
     copy_file File.join('config_vars_controller_test.rb'),
               File.join('test', 'functional', 'config_vars_controller_test.rb')
     [
-      '_form.html.erb', 'edit.html.erb', 'index.html.erb', 'new.html.erb',
-      'show.html.erb'
+      '_form.html.erb', 'edit.html.erb', 'index.html.erb', 'new.html.erb'
     ].each do |view_name|
       copy_file File.join('config_vars', view_name),
                 File.join('app', 'views', 'config_vars', view_name)
     end
     route 'resources :config_vars'
+    
+    copy_file 'config_vars_initializer.rb',
+              File.join('config', 'initializers', 'config_vars.rb')    
+    
   end
 end  # class ConfigvarsRails::ConfigVarsGenerator
 

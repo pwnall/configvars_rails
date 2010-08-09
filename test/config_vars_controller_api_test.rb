@@ -11,18 +11,35 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
 
   setup do
     @config_var = config_vars(:app_uri)
-    request.env['HTTP_AUTHORIZATION'] = encode_credentials('config', 'vars')
+    request.env['HTTP_AUTHORIZATION'] = encode_credentials('config', 'vars')    
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:config_vars)
+    
+    assert assigns(:config_vars).include?(config_vars(:app_uri)),
+           "@config_vars doesn't have a database fixture"
+    assert assigns(:default_vars).has_key?('simple_var'),
+           "@default_vars doesn't have a simple_var"
   end
 
   test "should get new" do
     get :new
     assert_response :success
+  end
+  
+  test "new with preset name" do
+    get :new, :name => 'undefined'
+    assert_response :success
+    assert_equal 'undefined', assigns(:config_var).name
+  end
+
+  test "new with preset name and default value" do
+    get :new, :name => 'simple_var'
+    assert_response :success
+    assert_equal 'simple_var', assigns(:config_var).name
+    assert_equal 'simple_val', assigns(:config_var).value
   end
 
   test "should create config_var" do
@@ -31,12 +48,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
       post :create, :config_var => attributes
     end
 
-    assert_redirected_to config_var_path(assigns(:config_var))
-  end
-
-  test "should show config_var" do
-    get :show, :id => @config_var.to_param
-    assert_response :success
+    assert_redirected_to config_vars_url
   end
 
   test "should get edit" do
@@ -47,7 +59,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   test "should update config_var" do
     put :update, :id => @config_var.to_param,
                  :config_var => @config_var.attributes
-    assert_redirected_to config_var_path(assigns(:config_var))
+    assert_redirected_to config_vars_url
   end
 
   test "should destroy config_var" do
@@ -55,7 +67,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
       delete :destroy, :id => @config_var.to_param
     end
 
-    assert_redirected_to config_vars_path
+    assert_redirected_to config_vars_url
   end
   
   # Verbatim, from ActiveController's own unit tests.

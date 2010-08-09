@@ -17,6 +17,10 @@ class ConfigVarTest < ActiveSupport::TestCase
   test "convenience get" do
     @var.save!
     assert_equal 'var_value', ConfigVar['var']
+    
+    assert_raise IndexError do
+      assert_equal 'failure', ConfigVar['undefined']
+    end
   end
   
   test "convenience set" do
