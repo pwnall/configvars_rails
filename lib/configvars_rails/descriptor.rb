@@ -45,7 +45,7 @@ module ConfigvarsRails
 end  # namespace ConfigvarsRails
 
 
-# 
+# Methods for defining configuration variables with default values.
 module ConfigVars
   # Declares a configuration variable with string values.
   #
