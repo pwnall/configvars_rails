@@ -1,17 +1,17 @@
 require 'rails'
 
+# :nodoc: namespace
+module ConfigvarsRails
 
-# :nodoc: putting the generator in Rails' namespace, since we only have one
-module Rails
 
-
-class ConfigVarsGenerator < Rails::Generators::Base
+# Name chosen to get configvars_rails:all
+class AllGenerator < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
 
   def create_config_vars
     copy_file 'config_var.rb',
               File.join('app', 'models', 'config_var.rb')
-    copy_file '002_create_facebook_tokens.rb',
+    copy_file '001_create_config_vars.rb',
         File.join('db', 'migrate', '20100808000001_create_config_vars.rb')
     copy_file 'config_vars.yml',
               File.join('test', 'fixtures', 'config_vars.yml')
@@ -29,6 +29,6 @@ class ConfigVarsGenerator < Rails::Generators::Base
     end
     route 'resources :config_vars'
   end
-end  # class Rails::ConfigVarsGenerator
+end  # class ConfigvarsRails::ConfigVarsGenerator
 
-end  # namespace Rails
+end  # namespace ConfigvarsRails

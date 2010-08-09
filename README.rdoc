@@ -5,6 +5,7 @@ Global configuration variables for a Ruby on Rails 3 application.
 Configuration for Rails application is idiomatically stored in the source code,
 under the config/ directory. This approach has many upsides, such as having the
 configuration go under version control together with the rest of the code.
+
 However, it also means that the source code has to be modified to make any
 configuration change. This makes it unlikely that the same code can be used in
 different deployments.
@@ -12,7 +13,7 @@ different deployments.
 == Integration
 
 Scaffold the model, controller, and views.
-    rails g config_vars    
+    rails g configvars_rails:all   
 
 Note: the code inside the models and controllers is tucked away in the plug-in.
 The scaffold model and controller is there as an point. You will be

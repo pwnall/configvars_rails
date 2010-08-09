@@ -6,10 +6,10 @@ module ConfigvarsRails
 
 class Engine < Rails::Engine
   paths.app                 = "app"
-  # paths.app.controllers     = "app/controllers"
+  paths.app.controllers     = "app/controllers"
   paths.app.helpers         = "app/helpers"
-  # paths.app.models          = "app/models"
-  # paths.app.views           = "app/views"
+  paths.app.models          = "app/models"
+  paths.app.views           = "app/views"
   # paths.lib                 = "lib"
   # paths.lib.tasks           = "lib/tasks"
   # paths.config              = "config"
@@ -18,7 +18,7 @@ class Engine < Rails::Engine
   # paths.config.routes       = "config/routes.rb"
   
   generators do
-    require 'configvars_rails/generators/config_vars_generator.rb'
+    require 'configvars_rails/generators/all_generator.rb'
   end
 end  # class ConfigvarsRails::Engine
 
