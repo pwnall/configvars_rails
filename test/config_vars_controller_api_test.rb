@@ -20,8 +20,9 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
     
     assert assigns(:config_vars).include?(config_vars(:app_uri)),
            "@config_vars doesn't have a database fixture"
-    assert assigns(:default_vars).has_key?('simple_var'),
-           "@default_vars doesn't have a simple_var"
+    assert assigns(:default_vars).map(&:first).
+                                  include?('config_vars.http_user'),
+           "@default_vars doesn't have config_vars:http_user"
   end
 
   test "should get new" do
@@ -36,10 +37,10 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   end
 
   test "new with preset name and default value" do
-    get :new, :name => 'simple_var'
+    get :new, :name => 'config_vars.http_user'
     assert_response :success
-    assert_equal 'simple_var', assigns(:config_var).name
-    assert_equal 'simple_val', assigns(:config_var).value
+    assert_equal 'config_vars.http_user', assigns(:config_var).name
+    assert_equal 'config', assigns(:config_var).value
   end
 
   test "should create config_var" do

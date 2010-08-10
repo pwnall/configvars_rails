@@ -34,10 +34,9 @@ module ControllerInstanceMethods
     
     defined_names = ConfigvarsRails.variable_names
     default_names = defined_names - @config_vars.map { |var| var.name.to_sym }
-    @default_vars = {}
-    default_names.map(&:to_s).sort.each do |name|
-      @default_vars[name] = ConfigvarsRails.variable_descriptor(name)
-    end
+    @default_vars = default_names.map { |name|
+      [name.to_s, ConfigvarsRails.variable_descriptor(name)]
+    }.sort
 
     respond_to do |format|
       format.html # index.html.erb

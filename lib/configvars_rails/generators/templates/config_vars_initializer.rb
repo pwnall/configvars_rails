@@ -1,4 +1,8 @@
-# Definitions for configuration variables used in this application.
+# Used in the scaffolded ConfigVarsController.
+ConfigVars.string 'config_vars.http_user', 'config'
+ConfigVars.string 'config_vars.http_password', 'vars'
 
-ConfigVars.string 'simple_var', 'simple_val'
-ConfigVars.string('block_var') { Time.now }
+# Example use only. Remove after reading.
+ConfigVars.string('block_example') { Time.now }
+
+# Define your own configuration variables here.

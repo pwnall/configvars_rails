@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2010-08-09}
+  s.date = %q{2010-08-10}
   s.description = %q{This gem provides a model and simple controller for
       storing global application configuration in a database. This allows the
       configuration to change without source code modifications.}

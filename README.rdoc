@@ -28,13 +28,22 @@ Configuration variables are defined as follows:
     ConfigVars.string :variable_name, 'default value'
     ConfigVars.string(:variable_name) { 'block producing default value' } 
 
-It is safe to define configuration variables at any time. Variables can be
-redefined. Other plugins can define their own variables, as long as they include
-configvars_rails as a gem dependency, to ensure proper load order.
+It is safe to define configuration variables anywhere in your code - make sure
+it gets loaded in development mode, though! The scaffold defines a couple
+variables in config/initializers/config_vars.rb
+
+Variables can be redefined. Other plugins can define their own variables, as
+long as they include configvars_rails as a gem dependency, to ensure proper load
+order.
 
 When the application is running, a rudimentary UI for editing configuration
 variables is available at
     http://your-app-server/config_vars
+
+By default, the page is protected with HTTP Basic authentication. The default
+username:password combo is config:vars. The credentials can be tweaked by
+(you guessed!) changing the config_vars.http_user and config_vars.http_password
+configuration variables.
 
 == Note on Patches/Pull Requests
  
