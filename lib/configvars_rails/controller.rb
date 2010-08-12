@@ -42,47 +42,43 @@ module ControllerInstanceMethods
       format.html # index.html.erb
     end
   end
-
-  # GET /config_vars/new
-  # GET /config_vars/new.xml
-  def new
-    @config_var = ConfigVar.new :name => params[:name]
-    if params[:name] and descriptor = ConfigvarsRails.variable_descriptor(params[:name])
-      @config_var.value = descriptor.default_value
-    end
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
+    
+  # GET /config_vars/http_user
+  def show
+    edit
+    render :text => @config_var.value
   end
 
-  # GET /config_vars/1/edit
+  # GET /config_vars/http_user/edit
   def edit
-    @config_var = ConfigVar.find(params[:id])
-  end
-
-  # POST /config_vars
-  # POST /config_vars.xml
-  def create
-    @config_var = ConfigVar.new(params[:config_var])
-
-    respond_to do |format|
-      if @config_var.save!
-        format.html { redirect_to(config_vars_url, :notice => 'Configuration variable was successfully created.') }
-      else
-        format.html { render :action => :new }
+    @config_var = ConfigVar.where(:name => params[:name]).first
+    unless @config_var
+      @config_var = ConfigVar.new :name => params[:name]
+      if descriptor = ConfigvarsRails.variable_descriptor(params[:name])
+        @config_var.value = descriptor.default_value
       end
-    end
+    end      
   end
 
-  # PUT /config_vars/1
-  # PUT /config_vars/1.xml
+  # PUT /config_vars/http_user
   def update
-    @config_var = ConfigVar.find(params[:id])
+    @config_var = ConfigVar.where(:name => params[:name]).first
+    unless @config_var
+      @config_var = ConfigVar.new params[:config_var]
+      @config_var.name = params[:name]
+    end
 
     respond_to do |format|
-      if @config_var.update_attributes(params[:config_var])
-        format.html { redirect_to(config_vars_url, :notice => 'Configuration variable was successfully updated.') }
+      success = if @config_var.new_record?
+        @config_var.save
+      else
+        @config_var.update_attributes(params[:config_var])
+      end
+      if success
+        format.html do
+          redirect_to config_vars_url,
+              :notice => 'Configuration variable was successfully updated.'
+        end
       else
         format.html { render :action => :edit }
       end
@@ -92,7 +88,7 @@ module ControllerInstanceMethods
   # DELETE /config_vars/1
   # DELETE /config_vars/1.xml
   def destroy
-    @config_var = ConfigVar.find(params[:id])
+    @config_var = ConfigVar.where(:name => params[:name]).first
     @config_var.destroy
 
     respond_to do |format|

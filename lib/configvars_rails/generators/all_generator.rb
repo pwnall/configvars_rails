@@ -20,13 +20,11 @@ class AllGenerator < Rails::Generators::Base
               File.join('app', 'controllers', 'config_vars_controller.rb')    
     copy_file File.join('config_vars_controller_test.rb'),
               File.join('test', 'functional', 'config_vars_controller_test.rb')
-    [
-      '_form.html.erb', 'edit.html.erb', 'index.html.erb', 'new.html.erb'
-    ].each do |view_name|
+    ['edit.html.erb', 'index.html.erb'].each do |view_name|
       copy_file File.join('config_vars', view_name),
                 File.join('app', 'views', 'config_vars', view_name)
     end
-    route 'resources :config_vars'
+    route 'config_vars'
     
     copy_file 'config_vars_initializer.rb',
               File.join('config', 'initializers', 'config_vars.rb')    

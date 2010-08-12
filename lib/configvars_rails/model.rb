@@ -61,6 +61,11 @@ module ModelInstanceMethods
   def descriptor
     ConfigvarsRails.variable_descriptor name
   end
+  
+  # Use name instead of ID on all URLs.
+  def to_param
+    name
+  end
 end  # module ConfigvarsRails::Model::ModelInstanceMethods
 
 ActiveRecord::Base.send :include, ModelMixin

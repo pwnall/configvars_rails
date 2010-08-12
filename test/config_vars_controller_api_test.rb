@@ -25,19 +25,14 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
            "@default_vars doesn't have config_vars:http_user"
   end
 
-  test "should get new" do
-    get :new
+  test "should get variable value" do
+    get :show, :name => @config_var.to_param
     assert_response :success
+    assert_equal @config_var.value, @response.body
   end
   
-  test "new with preset name" do
-    get :new, :name => 'undefined'
-    assert_response :success
-    assert_equal 'undefined', assigns(:config_var).name
-  end
-
-  test "new with preset name and default value" do
-    get :new, :name => 'config_vars.http_user'
+  test "edit with preset name and default value" do
+    get :edit, :name => 'config_vars.http_user'
     assert_response :success
     assert_equal 'config_vars.http_user', assigns(:config_var).name
     assert_equal 'config', assigns(:config_var).value
@@ -46,26 +41,27 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   test "should create config_var" do
     attributes = @config_var.attributes.merge 'name' => 'other_uri'
     assert_difference('ConfigVar.count') do
-      post :create, :config_var => attributes
+      put :update, :config_var => attributes, :name => 'other_uri'
     end
 
     assert_redirected_to config_vars_url
+    assert_equal ConfigVar['other_uri'], @config_var.value
   end
 
   test "should get edit" do
-    get :edit, :id => @config_var.to_param
+    get :edit, :name => @config_var.to_param
     assert_response :success
   end
 
   test "should update config_var" do
-    put :update, :id => @config_var.to_param,
+    put :update, :name => @config_var.to_param,
                  :config_var => @config_var.attributes
     assert_redirected_to config_vars_url
   end
 
   test "should destroy config_var" do
     assert_difference('ConfigVar.count', -1) do
-      delete :destroy, :id => @config_var.to_param
+      delete :destroy, :name => @config_var.to_param
     end
 
     assert_redirected_to config_vars_url

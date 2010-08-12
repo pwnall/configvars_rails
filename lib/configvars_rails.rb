@@ -5,6 +5,7 @@ end
 require 'configvars_rails/controller.rb'
 require 'configvars_rails/descriptor.rb'
 require 'configvars_rails/model.rb'
+require 'configvars_rails/routes.rb'
 
 if defined?(Rails)
   require 'configvars_rails/engine.rb'
