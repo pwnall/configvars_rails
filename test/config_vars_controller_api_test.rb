@@ -67,6 +67,12 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
     assert_redirected_to config_vars_url
   end
   
+  test "cannot access config vars without authentication" do
+    request.env.delete 'HTTP_AUTHORIZATION'
+    get :index
+    assert_response :unauthorized    
+  end
+  
   # Verbatim, from ActiveController's own unit tests.
   def encode_credentials(username, password)
     "Basic #{ActiveSupport::Base64.encode64("#{username}:#{password}")}"

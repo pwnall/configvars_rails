@@ -45,6 +45,13 @@ username:password combo is config:vars. The credentials can be tweaked by
 (you guessed!) changing the config_vars.http_user and config_vars.http_password
 configuration variables.
 
+You can get HTTP Basic authentication for your other actions by calling
+config_vars_auth in your controllers, as if it was before_filter. This is
+particularly handy as a quick patch the authorization issues that come up when
+open-sourcing an application that's running in production.
+    config_vars_auth, :except => :index
+
+
 == Note on Patches/Pull Requests
  
 * Fork the project.

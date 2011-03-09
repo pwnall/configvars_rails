@@ -23,6 +23,12 @@ module ControllerClassMethods
   def config_vars_controller
     include ControllerInstanceMethods
   end
+  
+  # HTTP Basic for controller actions, using config_vars credentials.
+  def config_vars_auth(*args)
+    include AuthInstanceMethods
+    before_filter :config_vars_http_basic_check, *args
+  end
 end
 
 # Included in controllers that call config_vars_controller.
@@ -95,7 +101,19 @@ module ControllerInstanceMethods
       format.html { redirect_to(config_vars_url) }
     end
   end
-end
+end  # module ConfigvarsRails::Session::ControllerInstanceMethods
+
+# Included in controllers that call config_vars_controller.
+module AuthInstanceMethods
+  def config_vars_http_basic_check
+    authenticate_or_request_with_http_basic(
+        ConfigVar['config_vars.http_realm']) do |user, password|
+      user == ConfigVar['config_vars.http_user'] &&
+          password == ConfigVar['config_vars.http_password']
+    end
+  end
+  private :config_vars_http_basic_check
+end  # module ConfigvarsRails::Session::AclInstanceMethods
 
 ActionController::Base.send :include, ControllerMixin
 
