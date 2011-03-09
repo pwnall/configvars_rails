@@ -11,7 +11,9 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
 
   setup do
     @config_var = config_vars(:app_uri)
-    request.env['HTTP_AUTHORIZATION'] = encode_credentials('config', 'vars')    
+    request.env['HTTP_AUTHORIZATION'] =
+        ActionController::HttpAuthentication::Basic.encode_credentials('config',
+                                                                       'vars')
   end
 
   test "should get index" do
@@ -72,9 +74,4 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
     get :index
     assert_response :unauthorized    
   end
-  
-  # Verbatim, from ActiveController's own unit tests.
-  def encode_credentials(username, password)
-    "Basic #{ActiveSupport::Base64.encode64("#{username}:#{password}")}"
-  end  
 end
