@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configvars_rails}
-  s.version = "0.4.0"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2011-03-09}
+  s.date = %q{2011-03-21}
   s.description = %q{This gem provides a model and simple controller for
       storing global application configuration in a database. This allows the
       configuration to change without source code modifications.}
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "lib/configvars_rails/generators/templates/config_vars_controller.rb",
     "lib/configvars_rails/generators/templates/config_vars_controller_test.rb",
     "lib/configvars_rails/generators/templates/config_vars_initializer.rb",
+    "lib/configvars_rails/generators/templates/layouts/config_vars.html.erb",
     "lib/configvars_rails/model.rb",
     "lib/configvars_rails/routes.rb",
     "test/config_var_test.rb",
@@ -47,6 +48,7 @@ Gem::Specification.new do |s|
     "test/helpers/application_controller.rb",
     "test/helpers/db_setup.rb",
     "test/helpers/initializers.rb",
+    "test/helpers/rails.rb",
     "test/helpers/routes.rb",
     "test/helpers/view_helpers.rb",
     "test/routes_test.rb",
@@ -63,6 +65,7 @@ Gem::Specification.new do |s|
     "test/helpers/application_controller.rb",
     "test/helpers/db_setup.rb",
     "test/helpers/initializers.rb",
+    "test/helpers/rails.rb",
     "test/helpers/routes.rb",
     "test/helpers/view_helpers.rb",
     "test/routes_test.rb",
