@@ -28,13 +28,13 @@ module ControllerClassMethods
   def config_vars_auth(*args)
     include AuthInstanceMethods
     before_filter :config_vars_http_basic_check, *args
+    layout 'config_vars'
   end
 end
 
 # Included in controllers that call config_vars_controller.
 module ControllerInstanceMethods
   # GET /config_vars
-  # GET /config_vars.xml
   def index
     @config_vars = ConfigVar.order(:name).all
     
@@ -91,8 +91,7 @@ module ControllerInstanceMethods
     end
   end
 
-  # DELETE /config_vars/1
-  # DELETE /config_vars/1.xml
+  # DELETE /config_vars/http_user
   def destroy
     @config_var = ConfigVar.where(:name => params[:name]).first
     @config_var.destroy

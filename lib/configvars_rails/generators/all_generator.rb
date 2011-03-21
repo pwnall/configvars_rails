@@ -24,6 +24,8 @@ class AllGenerator < Rails::Generators::Base
       copy_file File.join('config_vars', view_name),
                 File.join('app', 'views', 'config_vars', view_name)
     end
+    copy_file File.join('layouts', 'config_vars.html.erb'),
+              File.join('app', 'views', 'layouts', 'config_vars.html.erb')
     route 'config_vars'
     
     copy_file 'config_vars_initializer.rb',
