@@ -16,6 +16,11 @@ class ConfigVarsAuthApiTest < ActionController::TestCase
     get :index
     assert_response :success
   end
+  
+  test "index should render with application layout" do
+    get :index
+    assert_select 'h1', 'Application Layout'
+  end
 
   test "cannot access action without authentication" do
     request.env.delete 'HTTP_AUTHORIZATION'
