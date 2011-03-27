@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configvars_rails}
-  s.version = "0.4.1"
+  s.version = "0.4.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = %q{2011-03-21}
+  s.date = %q{2011-03-27}
   s.description = %q{This gem provides a model and simple controller for
       storing global application configuration in a database. This allows the
       configuration to change without source code modifications.}
@@ -43,14 +43,18 @@ Gem::Specification.new do |s|
     "lib/configvars_rails/model.rb",
     "lib/configvars_rails/routes.rb",
     "test/config_var_test.rb",
+    "test/config_vars_auth_api_test.rb",
     "test/config_vars_controller_api_test.rb",
     "test/descriptor_test.rb",
     "test/helpers/application_controller.rb",
+    "test/helpers/auth_test_controller.rb",
     "test/helpers/db_setup.rb",
     "test/helpers/initializers.rb",
     "test/helpers/rails.rb",
     "test/helpers/routes.rb",
     "test/helpers/view_helpers.rb",
+    "test/helpers/views/auth_test/index.html.erb",
+    "test/helpers/views/layouts/application.html.erb",
     "test/routes_test.rb",
     "test/test_helper.rb"
   ]
@@ -60,9 +64,11 @@ Gem::Specification.new do |s|
   s.summary = %q{Global configuration variables for Rails 3 applications.}
   s.test_files = [
     "test/config_var_test.rb",
+    "test/config_vars_auth_api_test.rb",
     "test/config_vars_controller_api_test.rb",
     "test/descriptor_test.rb",
     "test/helpers/application_controller.rb",
+    "test/helpers/auth_test_controller.rb",
     "test/helpers/db_setup.rb",
     "test/helpers/initializers.rb",
     "test/helpers/rails.rb",
