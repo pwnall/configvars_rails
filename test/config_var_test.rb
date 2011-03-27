@@ -13,6 +13,16 @@ class ConfigVarTest < ActiveSupport::TestCase
     @var.name = 'app_uri'
     assert !@var.valid?
   end
+  
+  test "allows empty values" do
+    @var.value = ''
+    assert @var.valid?
+  end
+  
+  test "does not allow nil values" do
+    @var.value = nil
+    assert !@var.valid?
+  end
 
   test "convenience get" do
     @var.save!
