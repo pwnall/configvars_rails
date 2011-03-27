@@ -22,13 +22,13 @@ module ControllerClassMethods
   # name is hardwired in other parts of the implementation.
   def config_vars_controller
     include ControllerInstanceMethods
+    layout 'config_vars'
   end
   
   # HTTP Basic for controller actions, using config_vars credentials.
   def config_vars_auth(*args)
     include AuthInstanceMethods
     before_filter :config_vars_http_basic_check, *args
-    layout 'config_vars'
   end
 end
 

@@ -5,6 +5,7 @@ class ActionController::TestCase
     @routes.draw do
       # NOTE: this route should be kept in sync with the config_vars template.
       config_vars
+      get 'auth_test' => 'auth_test#index'
     end
     ApplicationController.send :include, @routes.url_helpers
   end
