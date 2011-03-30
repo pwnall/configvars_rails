@@ -31,7 +31,7 @@ module ModelClassMethods
 end  # module ConfigvarsRails::Model::ModelClassMethods
 
 
-# Included in the metaclass of models that call pwnauth_user_model.
+# Included in the metaclass of models that call config_vars_model.
 module ModelMetaclassMethods
   # Access configuration flags by ConfigVar['flag_name'].
   def [](name)
