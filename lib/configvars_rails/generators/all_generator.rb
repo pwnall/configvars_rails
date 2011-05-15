@@ -1,10 +1,10 @@
 require 'rails'
 
 # :nodoc: namespace
-module ConfigvarsRails
+module Configvars
 
 
-# Name chosen to get configvars_rails:all
+# rails g configvars:all
 class AllGenerator < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
 
@@ -32,6 +32,6 @@ class AllGenerator < Rails::Generators::Base
               File.join('config', 'initializers', 'config_vars.rb')    
     
   end
-end  # class ConfigvarsRails::ConfigVarsGenerator
+end  # class Configvars::ConfigVarsGenerator
 
-end  # namespace ConfigvarsRails
+end  # namespace Configvars

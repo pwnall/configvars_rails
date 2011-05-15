@@ -13,7 +13,7 @@ different deployments.
 == Installation
 
 Scaffold the model, controller, and views.
-    rails g configvars_rails:all   
+    rails g configvars:all   
 
 Note: the code inside the models and controllers is tucked away in the plug-in.
 The scaffold model and controller is there as an point. You will be

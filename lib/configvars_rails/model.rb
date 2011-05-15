@@ -23,7 +23,7 @@ module ModelClassMethods
     validates :name, :uniqueness => true, :length => 1..64, :presence => true
   
     # The value of the configuration variable.
-    validates :value, :length => { :in => 0..1024, :allow_nil => false }
+    validates :value, :length => 0..1024, :exclusion => { :in => [nil] }
 
     extend ModelMetaclassMethods
     include ModelInstanceMethods
