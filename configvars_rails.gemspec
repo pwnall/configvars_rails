@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configvars_rails}
-  s.version = "0.4.5"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-06-30}
+  s.date = %q{2011-07-06}
   s.description = %q{This gem provides a model and simple controller for
     storing global application configuration in a database. This allows the
     configuration to change without source code modifications.}
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "app/helpers/config_vars_helper.rb",
     "configvars_rails.gemspec",
     "lib/configvars_rails.rb",
+    "lib/configvars_rails/auth.rb",
     "lib/configvars_rails/controller.rb",
     "lib/configvars_rails/descriptor.rb",
     "lib/configvars_rails/engine.rb",
