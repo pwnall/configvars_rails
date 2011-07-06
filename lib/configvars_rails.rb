@@ -2,6 +2,7 @@
 module ConfigvarsRails
 end
 
+require 'configvars_rails/auth.rb'
 require 'configvars_rails/controller.rb'
 require 'configvars_rails/descriptor.rb'
 require 'configvars_rails/model.rb'
