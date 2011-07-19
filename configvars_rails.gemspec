@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{configvars_rails}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Victor Costan}]
-  s.date = %q{2011-07-06}
+  s.date = %q{2011-07-19}
   s.description = %q{This gem provides a model and simple controller for
     storing global application configuration in a database. This allows the
     configuration to change without source code modifications.}
@@ -64,7 +64,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/pwnall/configvars_rails}
   s.licenses = [%q{MIT}]
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.4}
+  s.rubygems_version = %q{1.8.5}
   s.summary = %q{Global configuration variables for Rails 3 applications.}
 
   if s.respond_to? :specification_version then
