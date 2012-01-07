@@ -40,18 +40,15 @@ module Model
   end  # module ConfigvarsRails::Model::ClassMethods
 
 
-  # Included in models that include ConfigVarsRails::Model.
-  module InstanceMethods
-    # The descriptor for this variable, or nil if no descriptor was defined.
-    def descriptor
-      ConfigvarsRails.variable_descriptor name
-    end
-    
-    # Use name instead of ID on all URLs.
-    def to_param
-      name
-    end
-  end  # module ConfigvarsRails::Model::InstanceMethods
+  # The descriptor for this variable, or nil if no descriptor was defined.
+  def descriptor
+    ConfigvarsRails.variable_descriptor name
+  end
+  
+  # Use name instead of ID on all URLs.
+  def to_param
+    name
+  end
 
 end  # namespace ConfigvarsRails::Model
 
