@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "configvars_rails"
-  s.version = "0.5.2"
+  s.version = "0.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Victor Costan"]
-  s.date = "2012-01-07"
+  s.date = "2012-03-13"
   s.description = "This gem provides a model and simple controller for\n    storing global application configuration in a database. This allows the\n    configuration to change without source code modifications."
   s.email = "victor@costan.us"
   s.extra_rdoc_files = [
@@ -62,30 +62,27 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/pwnall/configvars_rails"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.17"
   s.summary = "Global configuration variables for Rails 3 applications."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, [">= 3.2.0.rc2"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.2.0"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
+      s.add_development_dependency(%q<jeweler>, [">= 1.8.3"])
       s.add_development_dependency(%q<sqlite3>, [">= 1.3.5"])
     else
-      s.add_dependency(%q<rails>, [">= 3.2.0.rc2"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<rails>, [">= 3.2.0"])
+      s.add_dependency(%q<bundler>, [">= 1.0.0"])
+      s.add_dependency(%q<jeweler>, [">= 1.8.3"])
       s.add_dependency(%q<sqlite3>, [">= 1.3.5"])
     end
   else
-    s.add_dependency(%q<rails>, [">= 3.2.0.rc2"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<rails>, [">= 3.2.0"])
+    s.add_dependency(%q<bundler>, [">= 1.0.0"])
+    s.add_dependency(%q<jeweler>, [">= 1.8.3"])
     s.add_dependency(%q<sqlite3>, [">= 1.3.5"])
   end
 end
