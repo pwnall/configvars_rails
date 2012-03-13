@@ -25,6 +25,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
     assert assigns(:default_vars).map(&:first).
                                   include?('config_vars.http_user'),
            "@default_vars doesn't have config_vars:http_user"
+    assert_select 'meta[name="csrf-token"]', nil, 'Missing CSRF token'
   end
 
   test "should get variable value" do
