@@ -19,7 +19,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    
+
     assert assigns(:config_vars).include?(config_vars(:app_uri)),
            "@config_vars doesn't have a database fixture"
     assert assigns(:default_vars).map(&:first).
@@ -29,13 +29,13 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   end
 
   test "should get variable value" do
-    get :show, :name => @config_var.to_param
+    get :show, name: @config_var.to_param
     assert_response :success
     assert_equal @config_var.value, @response.body
   end
-  
+
   test "edit with preset name and default value" do
-    get :edit, :name => 'config_vars.http_user'
+    get :edit, name: 'config_vars.http_user'
     assert_response :success
     assert_equal 'config_vars.http_user', assigns(:config_var).name
     assert_equal 'config', assigns(:config_var).value
@@ -44,7 +44,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   test "should create config_var" do
     attributes = @config_var.attributes.merge 'name' => 'other_uri'
     assert_difference('ConfigVar.count') do
-      put :update, :config_var => attributes, :name => 'other_uri'
+      put :update, config_var: attributes
     end
 
     assert_redirected_to config_vars_url
@@ -52,27 +52,26 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, :name => @config_var.to_param
+    get :edit, name: @config_var.to_param
     assert_response :success
   end
 
   test "should update config_var" do
-    put :update, :name => @config_var.to_param,
-                 :config_var => @config_var.attributes
+    put :update, config_var: @config_var.attributes
     assert_redirected_to config_vars_url
   end
 
   test "should destroy config_var" do
     assert_difference('ConfigVar.count', -1) do
-      delete :destroy, :name => @config_var.to_param
+      delete :destroy, name: @config_var.to_param
     end
 
     assert_redirected_to config_vars_url
   end
-  
+
   test "cannot access config vars without authentication" do
     request.env.delete 'HTTP_AUTHORIZATION'
     get :index
-    assert_response :unauthorized    
+    assert_response :unauthorized
   end
 end

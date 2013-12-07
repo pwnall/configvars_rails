@@ -18,5 +18,11 @@ end
 # For javascript_include_tag in the config_vars layout.
 ActionController::Base.config.assets_dir = '.'
 ActionController::Base.config.javascripts_dir = '.'
-ActionView::Helpers::AssetTagHelper.
-    register_javascript_expansion(:defaults => ['rails.js'])
+
+if ActionView::Helpers::AssetTagHelper.respond_to?(:register_javascript_expansion)
+  # Rails 3.
+  ActionView::Helpers::AssetTagHelper.
+      register_javascript_expansion(defaults: ['rails.js'])
+else
+  # Rails 4 doesn't seem to need anything.
+end

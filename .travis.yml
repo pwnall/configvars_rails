@@ -1,0 +1,12 @@
+language: ruby
+env:
+  - DB=mysql:utf8_general_ci
+  - DB=mysql:utf8_bin
+  - DB=pg DB_USER=postgres
+  - DB=sqlite
+gemfile:
+  - Gemfile.rails3
+  - Gemfile.rails4
+rvm:
+  - 1.9.3
+  - 2.0.0
