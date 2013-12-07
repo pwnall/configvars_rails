@@ -54,6 +54,7 @@ class ConfigVarsControllerApiTest < ActionController::TestCase
   test "should get edit" do
     get :edit, name: @config_var.to_param
     assert_response :success
+    assert_select 'form[action$=/config_vars]'
   end
 
   test "should update config_var" do
